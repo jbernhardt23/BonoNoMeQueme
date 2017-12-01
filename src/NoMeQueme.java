@@ -80,6 +80,11 @@ public class NoMeQueme {
 		return finalBinaryString.toCharArray();
 	}
 
+	/**
+	 * Sums all spreading messages for each user
+	 * @param userList 
+	 * 
+	 */
 	private static void combineSignals(List<User> userList) {
 		int[] finalCombineSignal = new int[userList.get(0).getSpreadingMessage().length];
 
