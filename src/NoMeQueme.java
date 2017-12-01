@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.*;
 import java.util.Scanner;
 
+import javax.net.ssl.ExtendedSSLSession;
+
 /**
  * @author Jose Bernhardt
  *
@@ -49,9 +51,9 @@ public class NoMeQueme {
 	 * 
 	 * @param userDataChars array of chars with bits entered for user data
 	 * @param spreadingCode spreading code to be apply to the user
-	 * @return String representation of spreadingMessage
+	 * @return Char[] representation of spreadingMessage
 	 */
-	private static String spreadData(char[] userDataChars, int spreadingCode) {
+	private static char[] spreadData(char[] userDataChars, int spreadingCode) {
 		String userData = "";
 		List<Integer> chips = new ArrayList<Integer>();
 
@@ -71,16 +73,40 @@ public class NoMeQueme {
 
 			String binaryString = Integer.toBinaryString(chips.get(i));
 			int binaryBits = Integer.valueOf(binaryString);
-			finalBinaryString  = finalBinaryString + String.format("%04d", binaryBits);
+			finalBinaryString = finalBinaryString + String.format("%04d", binaryBits);
 
-		}	
+		}
 		System.out.println(finalBinaryString);
-		return finalBinaryString;
+		return finalBinaryString.toCharArray();
 	}
 
+	private static void combineSignals(List<User> userList) {
+		int[] finalCombineSignal = new int[userList.get(0).getSpreadingMessage().length];
 
+		for (int i = 0; i < userList.size(); i++) {
+			char[] spreadArray1 = userList.get(i).getSpreadingMessage();
+			char[] spreadArray2 = userList.get(i + 1).getSpreadingMessage();
 
-	private static void combineSignals(){
+			for (int k = 0; k < spreadArray1.length; k++) {
+				int currentBit1 = Integer.parseInt(String.valueOf(spreadArray1[k]));
+				int currentBit2 = Integer.parseInt(String.valueOf(spreadArray2[k]));
+
+				if (currentBit1 == 0)
+					currentBit1 = 1;
+				else
+					currentBit2 = -1;
+
+				if(currentBit2 == 0)
+					currentBit2 = 1;
+				else
+					currentBit2 = -1;
+
+				int sumBits = currentBit1 + currentBit2;
+				finalCombineSignal[k] = sumBits;
+
+			}
+
+		}
 
 	}
 

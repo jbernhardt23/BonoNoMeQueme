@@ -13,14 +13,14 @@ import java.util.Scanner;
 public class User {
 
     private char[] userData;
-    private String spreadingMessage;
+    private char[] spreadingMessage;
     private int spreadingCode;
 
     public void setUserData(char[] userData){
         this.userData = userData;
     }
 
-    public void setSpreadingMessage(String spreadingMessage){
+    public void setSpreadingMessage(char[] spreadingMessage){
         this.spreadingMessage = spreadingMessage;
     }
 
@@ -31,7 +31,7 @@ public class User {
         return userData;
     }
 
-    public String getSpreadingMessage(){
+    public char[] getSpreadingMessage(){
         return spreadingMessage;
     }
 
