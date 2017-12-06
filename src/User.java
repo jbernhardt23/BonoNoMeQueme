@@ -12,26 +12,26 @@ import java.util.Scanner;
  */
 public class User {
 
-    private char[] userData;
-    private char[] spreadingMessage;
+    private String[] userData;
+    private String[] spreadingMessage;
     private int spreadingCode;
 
-    public void setUserData(char[] userData){
+    public void setUserData(String[] userData){
         this.userData = userData;
     }
 
-    public void setSpreadingMessage(char[] spreadingMessage){
+    public void setSpreadingMessage(String[] spreadingMessage){
         this.spreadingMessage = spreadingMessage;
     }
 
     public void setSpreadingCode(int spreadingCode){
         this.spreadingCode = spreadingCode;
     }
-    public char[] getUserData(){
+    public String[] getUserData(){
         return userData;
     }
 
-    public char[] getSpreadingMessage(){
+    public String[] getSpreadingMessage(){
         return spreadingMessage;
     }
 
